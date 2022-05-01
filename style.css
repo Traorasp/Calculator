@@ -19,8 +19,11 @@ body {
 #calcDisplay {
     background-color: white;
     flex: 1 1 100%;
-    width: 200px;
-    height: 160px;
+    width: 168px;
+    padding: 44px 10px;
+    height: 72px;
+    font-size: 72px;
+    text-align: end;
 }
 
 #calcBody {
