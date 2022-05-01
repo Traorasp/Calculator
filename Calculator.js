@@ -1,17 +1,23 @@
 const calcDisplay = document.querySelector('#calcDisplay');
 
 const allButtons = Array.from(document.querySelectorAll('button'));
-allButtons.map(button => button.addEventListener('click', changeDisplay))
+allButtons.map(button => button.addEventListener('click', changeDisplay));
+
+const decimal = document.querySelector('#dot');
 
 let numberOne = 0;
 let operator = 0;
 let numberTwo = 0;
+
+console.log(decimal.getAttribute('class'));
+
 
 function changeDisplay(button){
     let buttonTxt = button.target.textContent; 
     switch (buttonTxt){
         case 'AC':
             calcDisplay.textContent = '';
+            decimal.setAttribute('class', 'on');
             clearNumbers();
             break;
         case '=':
@@ -26,9 +32,17 @@ function changeDisplay(button){
             if(operator != 0){
                 calculateDisplay()
             }
+            decimal.setAttribute('class', 'on');
             numberOne = calcDisplay.textContent;
             operator = buttonTxt;
             calcDisplay.textContent += buttonTxt;
+            break;
+        case '.':
+            if(decimal.classList == 'on') {
+                calcDisplay.textContent += buttonTxt;
+                decimal.removeAttribute('class')
+                console.log(decimal.classList);
+            }
             break;
         default:
             calcDisplay.textContent += +buttonTxt;
