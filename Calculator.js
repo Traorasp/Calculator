@@ -4,8 +4,24 @@ const calcDisplay = document.querySelector('#calcDisplay');
 const allButtons = Array.from(document.querySelectorAll('button'));
 allButtons.map(button => button.addEventListener('click', changeDisplay))
 
+let numberOne = 0;
+let operator = 0;
+let numberTwo = 0;
+
 function changeDisplay(button){
-    calcDisplay.textContent += button.target.textContent;
+    let buttonTxt = button.target.textContent; 
+    if(buttonTxt == '='){
+        numberTwo = calcDisplay.textContent.slice(numberOne.toString().length + 1);
+        calcDisplay.textContent = operate(+numberOne, operator, +numberTwo);
+    } else {
+    if(isNaN(+buttonTxt)){
+        numberOne = calcDisplay.textContent;
+        operator = buttonTxt;
+        calcDisplay.textContent += buttonTxt;
+    } else {
+    calcDisplay.textContent += +buttonTxt;
+    }
+    }
 }
 
 //Returns the sum of two numbers 
