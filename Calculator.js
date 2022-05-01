@@ -24,6 +24,9 @@ function changeDisplay(button){
             calculateDisplay()
             clearNumbers();
             break;
+        case 'Del':
+            calcDisplay.textContent = calcDisplay.textContent.slice(0, calcDisplay.textContent.length-1);
+            break;
         case '%':
         case '/':
         case '*':
@@ -84,7 +87,7 @@ function multiply(num1, num2){
 //Returns the value of on number being divided by another
 function divide(num1, num2){
     if(num2 == 0){return ':) Nice Try'};
-    return num1 / num2;
+    return Math.floor(num1 / num2 *100000)/100000;
 }
 
 //Returns the value of one value being modded by another
