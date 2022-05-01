@@ -9,31 +9,46 @@ let numberTwo = 0;
 
 function changeDisplay(button){
     let buttonTxt = button.target.textContent; 
-    if(buttonTxt == 'AC') {
-        calcDisplay.textContent = '';
-        numberOne = 0;
-        operator = 0;
-        numberTwo = 0;
+    switch (buttonTxt){
+        case 'AC':
+            calcDisplay.textContent = '';
+            clearNumbers();
+            break;
+        case '=':
+            calculateDisplay()
+            clearNumbers();
+            break;
+        case '%':
+        case '/':
+        case '*':
+        case '-':
+        case '+':
+            if(operator != 0){
+                calculateDisplay()
+            }
+            numberOne = calcDisplay.textContent;
+            operator = buttonTxt;
+            calcDisplay.textContent += buttonTxt;
+            break;
+        default:
+            calcDisplay.textContent += +buttonTxt;
+
     }
-    else if(buttonTxt == '='){
-        numberTwo = calcDisplay.textContent.slice(numberOne.toString().length + 1);
-        calcDisplay.textContent = operate(+numberOne, operator, +numberTwo);
-        numberOne = 0;
-        operator = 0;
-        numberTwo = 0;
-    } else {
-    if(isNaN(+buttonTxt)){
-        if(operator != 0){
-            numberTwo = calcDisplay.textContent.slice(numberOne.toString().length + 1);
-            calcDisplay.textContent = operate(+numberOne, operator, +numberTwo);
-        }
-        numberOne = calcDisplay.textContent;
-        operator = buttonTxt;
-        calcDisplay.textContent += buttonTxt;
-    } else {
-    calcDisplay.textContent += +buttonTxt;
-    }
-    }
+    
+}
+
+//Sets numberTwo to number after last operator presses by user
+//and sets calcDisplay to result of displays operation
+function calculateDisplay(){
+    numberTwo = calcDisplay.textContent.slice(numberOne.toString().length + 1);
+    calcDisplay.textContent = operate(+numberOne, operator, +numberTwo);
+}
+
+//Sets var storing all numbers to 0
+function clearNumbers(){
+    numberOne = 0;
+    operator = 0;
+    numberTwo = 0;
 }
 
 //Returns the sum of two numbers 
