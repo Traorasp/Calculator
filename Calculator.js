@@ -1,6 +1,5 @@
 const calcDisplay = document.querySelector('#calcDisplay');
 
-
 const allButtons = Array.from(document.querySelectorAll('button'));
 allButtons.map(button => button.addEventListener('click', changeDisplay))
 
@@ -10,11 +9,24 @@ let numberTwo = 0;
 
 function changeDisplay(button){
     let buttonTxt = button.target.textContent; 
-    if(buttonTxt == '='){
+    if(buttonTxt == 'AC') {
+        calcDisplay.textContent = '';
+        numberOne = 0;
+        operator = 0;
+        numberTwo = 0;
+    }
+    else if(buttonTxt == '='){
         numberTwo = calcDisplay.textContent.slice(numberOne.toString().length + 1);
         calcDisplay.textContent = operate(+numberOne, operator, +numberTwo);
+        numberOne = 0;
+        operator = 0;
+        numberTwo = 0;
     } else {
     if(isNaN(+buttonTxt)){
+        if(operator != 0){
+            numberTwo = calcDisplay.textContent.slice(numberOne.toString().length + 1);
+            calcDisplay.textContent = operate(+numberOne, operator, +numberTwo);
+        }
         numberOne = calcDisplay.textContent;
         operator = buttonTxt;
         calcDisplay.textContent += buttonTxt;
@@ -42,6 +54,7 @@ function multiply(num1, num2){
 
 //Returns the value of on number being divided by another
 function divide(num1, num2){
+    if(num2 == 0){return ':) Nice Try'};
     return num1 / num2;
 }
 
