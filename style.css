@@ -1,0 +1,54 @@
+body {
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+#calculator {
+    background-color: black;
+    display: flex;
+    width: 550px;
+    height: 650px;
+    padding: 25px;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+
+}
+
+#calcDisplay {
+    background-color: white;
+    flex: 1 1 100%;
+    width: 200px;
+    height: 160px;
+}
+
+#calcBody {
+    flex: 1 1;
+    height: 400px;
+}
+
+#numberButtons {
+    display: flex;
+    flex: 1;
+    gap: 5px;
+}
+
+.buttonCol {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+    flex: 1 0 0;
+}
+
+button {
+    font-size: 48px;
+    border: white solid 4px;
+    background-color: black;
+    color: white;
+    padding:  8px 25px;
+}
+
+.enter {
+    height: 168px;
+}
